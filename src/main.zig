@@ -48,4 +48,12 @@ pub inline fn clearBackground(color: Color) void {
     c.ClearBackground(color);
 }
 
-pub const drawText = c.DrawText;
+pub inline fn drawText(args: struct {
+    text: [:0]const u8,
+    x: i32,
+    y: i32,
+    fontSize: i32,
+    color: Color,
+}) void { 
+    c.DrawText(@ptrCast([*c]const u8, args.text), args.x, args.y, args.fontSize, args.color);
+}

@@ -14,6 +14,12 @@ pub fn main() !void {
         defer raylib.endDrawing();
 
         raylib.clearBackground(.{ .r = 255, .g = 255, .b = 255, .a = 255 });
-        raylib.drawText("Congrats! You created your first window!", 190, 200, 20, raylib.LIGHTGRAY);
+        raylib.drawText(.{
+            .text = "Congrats! You created your first window!", 
+            .x = 190, 
+            .y = 200, 
+            .fontSize = 20, 
+            .color = raylib.LIGHTGRAY
+        });
     }
 }
