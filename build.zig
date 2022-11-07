@@ -22,7 +22,8 @@ pub fn build(b: *std.build.Builder) void {
 
     // Example applications
 
-    installExample(b, example_basic.build(b, target, mode), example_basic.name);
+    installExample(b, example_core_basic_window.build(b, target, mode), example_core_basic_window.name);
+    installExample(b, example_core_input_keys.build(b, target, mode), example_core_input_keys.name);
 }
 
 pub fn stepBindings(b: *std.build.Builder, target: std.zig.CrossTarget, mode: std.builtin.Mode) *std.build.LibExeObjStep {
@@ -170,4 +171,5 @@ inline fn thisDir() []const u8 {
     return comptime std.fs.path.dirname(@src().file) orelse ".";
 }
 
-const example_basic = @import("examples/basic/build.zig");
+const example_core_basic_window = @import("examples/core/core_basic_window/build.zig");
+const example_core_input_keys = @import("examples/core/core_input_keys/build.zig");

@@ -3,9 +3,10 @@ const raylib = @import("raylib");
 
 pub fn main() !void {
     raylib.initWindow(.{
-        .title = "Basic Raylib",
+        .title = "raylib [core] example - basic window",
         .width = 800,
-        .height = 450
+        .height = 450,
+        .framerate = 60
     });
     defer raylib.closeWindow();
 
@@ -18,7 +19,7 @@ pub fn main() !void {
             .text = "Congrats! You created your first window!", 
             .x = 190, 
             .y = 200, 
-            .fontSize = 20, 
+            .font_size = 20, 
             .color = raylib.LIGHTGRAY
         });
     }
