@@ -1,5 +1,5 @@
 const std = @import("std");
-const raylib_builder = @import("../../build.zig");
+const raylib = @import("../../build.zig");
 
 pub const name = "basic";
 
@@ -9,8 +9,8 @@ pub fn build(b: *std.build.Builder, target: std.zig.CrossTarget, mode: std.built
     exe.setTarget(target);
     exe.setBuildMode(mode);
 
-    const raylib = raylib_builder.lib(b, target, mode);
-    exe.linkLibrary(raylib);
+    raylib.link(exe);
+    exe.addPackage(raylib.pkg);
 
     return exe;
 }
