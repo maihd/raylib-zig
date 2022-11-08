@@ -1,5 +1,8 @@
 const c = @cImport({
     @cInclude("raylib.h");
+
+    @cDefine("RAYGUI_IMPLEMENTATION", "");
+    @cInclude("raygui.h");
 });
 
 // Window
@@ -81,3 +84,28 @@ pub const Key = enum(c_int) {
 pub inline fn isKeyDown(key: Key) bool {
     return c.IsKeyDown(@enumToInt(key));
 }
+
+// GUI
+
+pub const gui = struct {
+    pub inline fn Label(args: struct {
+        text: [:0]const u8,
+        bounds: c.Rectangle,
+    }) void {
+        c.GuiLabel(args.bounds, @ptrCast([*c]const u8, args.text));
+    }
+
+    pub inline fn Button(args: struct {
+        text: [:0]const u8,
+        bounds: c.Rectangle,
+    }) bool {
+        return c.GuiButton(args.bounds, @ptrCast([*c]const u8, args.text));
+    }
+
+    pub inline fn LabelButton(args: struct {
+        text: [:0]const u8,
+        bounds: c.Rectangle,
+    }) bool {
+        return c.GuiLabelButton(args.bounds, @ptrCast([*c]const u8, args.text));
+    }
+};
